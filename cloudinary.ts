@@ -81,7 +81,7 @@ class CloudinaryUploader {
 }
 
 let clGetImageUrl = new CloudinaryUploader()
-  .setCloudName("dyvpwvjdn")
+  .setCloudName("<your cloud name here>")
   .setResourceType(resourceType.IMAGE)
   .setResize({
     width: 500,
@@ -93,7 +93,7 @@ let clGetImageUrl = new CloudinaryUploader()
     color: "red",
   })
   .setOpacity(30)
-  .setImageName("ellas_Shop_pwqai8.png")
+  .setImageName("<your image name as is on cloudinary>")
   .getCloudinaryImagePath();
 
 console.log(clGetImageUrl);
