@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.modeType = void 0;
+var modeType;
+(function (modeType) {
+    modeType["imaggaScale"] = "imaggaScale";
+    modeType["imaggaCrop"] = "imaggaCrop";
+    modeType["crop"] = "crop";
+    modeType["fill"] = "fill";
+    modeType["scale"] = "scale";
+    modeType["minimumPad"] = "minimumPad";
+    modeType["fit"] = "fit";
+    modeType["pad"] = "pad";
+    modeType["limitFit"] = "limitFit";
+    modeType["thumbnail"] = "thumbnail";
+    modeType["limitFill"] = "limitFill";
+    modeType["minimumFit"] = "minimumFit";
+    modeType["limitPad"] = "limitPad";
+    modeType["fillPad"] = "fillPad";
+})(modeType = exports.modeType || (exports.modeType = {}));
