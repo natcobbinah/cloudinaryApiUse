@@ -1,9 +1,10 @@
 import { buildUrl } from "cloudinary-build-url";
 import { modeType } from "./enumConstants/modeTypes";
 import { resourceType } from "./enumConstants/resourceTypes";
-import { resize } from "./imageUtils/IResize";
+import { Resize } from "./imageUtils/IResize";
 import { Border } from "./imageUtils/IBorder";
 import axios from "axios";
+import { background} from "./imageUtils/transformationProps";
 
 class CloudinaryUploader {
   private cloudName: string = "";
@@ -13,8 +14,10 @@ class CloudinaryUploader {
   private imageName: string = "";
   private resource_type: string = "";
   private resize: Object = {};
-  private border: Object = {};
+  private border: Border = {};
   private opacity: number = 0;
+  background: string = "";
+  
 
   constructor() {}
 
@@ -48,7 +51,7 @@ class CloudinaryUploader {
     return this;
   }
 
-  public setResize(resize: resize) {
+  public setResize(resize: Resize) {
     this.resize = resize;
     return this;
   }
@@ -58,12 +61,18 @@ class CloudinaryUploader {
     return this;
   }
 
+  public setBackground(background: background){
+    this.background = background;
+    return this;
+  }
+
   public setOpacity(opacity: number) {
     this.opacity = opacity;
     return this;
   }
+ 
 
-  public getCloudinaryImagePath() {
+  public getCloudinaryImage() {
     const imageUrl = buildUrl(
       `https://res.cloudinary.com/${this.cloudName}/${this.resource_type}/upload/${this.imageName}`,
       {
@@ -71,6 +80,7 @@ class CloudinaryUploader {
           cloudName: this.cloudName,
         },
         transformations: {
+          background: this.background,
           resize: this.resize,
           opacity: this.opacity,
         },
@@ -81,7 +91,7 @@ class CloudinaryUploader {
 }
 
 let clGetImageUrl = new CloudinaryUploader()
-  .setCloudName("<your cloud name here>")
+  .setCloudName("<your cloud name here>")  
   .setResourceType(resourceType.IMAGE)
   .setResize({
     width: 500,
@@ -93,8 +103,8 @@ let clGetImageUrl = new CloudinaryUploader()
     color: "red",
   })
   .setOpacity(30)
-  .setImageName("<your image name as is on cloudinary>")
-  .getCloudinaryImagePath();
+  .setImageName("<your image name as is on cloudinary>") 
+  .getCloudinaryImage();
 
 console.log(clGetImageUrl);
 

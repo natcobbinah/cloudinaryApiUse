@@ -14,6 +14,7 @@ var CloudinaryUploader = /** @class */ (function () {
         this.resize = {};
         this.border = {};
         this.opacity = 0;
+        this.background = "";
     }
     CloudinaryUploader.prototype.setCloudName = function (cloudName) {
         this.cloudName = cloudName;
@@ -47,16 +48,21 @@ var CloudinaryUploader = /** @class */ (function () {
         this.border = border;
         return this;
     };
+    CloudinaryUploader.prototype.setBackground = function (background) {
+        this.background = background;
+        return this;
+    };
     CloudinaryUploader.prototype.setOpacity = function (opacity) {
         this.opacity = opacity;
         return this;
     };
-    CloudinaryUploader.prototype.getCloudinaryImagePath = function () {
-        var imageUrl = cloudinary_build_url_1.buildUrl("https://res.cloudinary.com/" + this.cloudName + "/" + this.resource_type + "/upload/" + this.imageName, {
+    CloudinaryUploader.prototype.getCloudinaryImage = function () {
+        var imageUrl = (0, cloudinary_build_url_1.buildUrl)("https://res.cloudinary.com/".concat(this.cloudName, "/").concat(this.resource_type, "/upload/").concat(this.imageName), {
             cloud: {
                 cloudName: this.cloudName,
             },
             transformations: {
+                background: this.background,
                 resize: this.resize,
                 opacity: this.opacity,
             },
@@ -79,7 +85,7 @@ var clGetImageUrl = new CloudinaryUploader()
 })
     .setOpacity(30)
     .setImageName("<your image name as is on cloudinary>")
-    .getCloudinaryImagePath();
+    .getCloudinaryImage();
 console.log(clGetImageUrl);
 //retrieve image
 /* axios
